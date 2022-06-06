@@ -1,0 +1,48 @@
+<div class="container py-3">
+
+    <h3 class="fs-4 text-white-50">Listado de Estudiantes</h3>
+        
+    <table #table mat-table [dataSource]="studentsData" class="mat-elevation-z8 px-0 w-100">
+    
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let student"> {{student.id}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td class="fw-bold" mat-cell *matCellDef="let student"> {{ student.lastname }}, {{ student.name }} </td>
+      </ng-container>
+    
+      <!-- Courses Column -->
+      <ng-container matColumnDef="courses">
+        <th mat-header-cell *matHeaderCellDef> Cursos </th>
+        <td mat-cell *matCellDef="let student">
+          <mat-list role="list">
+            <mat-list-item role="listitem" *ngFor="let course of student.cursos" >
+              <i class="pe-2 fa-brands fa-{{ course | courseName }}"></i> {{ course }}</mat-list-item>          
+          </mat-list>
+        </td>
+      </ng-container>
+      
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let student">
+            <div class="d-flex justify-content-between">
+              <mat-icon [ngClass]="user.rol === 'admin' ? '' : 'd-none'" (click)="onClickInscription(student)" aria-hidden="false" aria-label="post_add icon" matTooltip="Inscribir a un curso">post_add</mat-icon>
+              <mat-icon [ngClass]="user.rol === 'admin' ? '' : 'd-none'" (click)="onClickEdit(student)" aria-hidden="false" aria-label="edit icon" matTooltip="Editar Estudiante">edit</mat-icon>
+              <mat-icon [ngClass]="user.rol === 'admin' ? '' : 'd-none'" (click)="onDeleteStudent(student)" aria-hidden="false" aria-label="delete icon" matTooltip="Eliminar Estudiante">delete</mat-icon>
+            </div>
+          
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+  </div>
+  

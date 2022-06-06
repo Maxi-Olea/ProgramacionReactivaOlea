@@ -1,0 +1,13 @@
+<div class="container-fluid p-0 h-100">
+    <div class="row">
+        <app-toolbar [user]="userData"></app-toolbar>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            <app-navbar [user]="userData"></app-navbar>
+        </div>
+        <div class="col-10">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

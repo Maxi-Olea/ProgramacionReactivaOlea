@@ -1,0 +1,11 @@
+<div class="bg-dark h-100">
+  <mat-selection-list [multiple]="false">
+    <button (click)="onClickHome()" mat-menu-item>Inicio</button>
+    <button [ngClass]="user.rol === 'admin' ? '' : 'd-none'" (click)="onClickAdd()" mat-menu-item>Agregar estudiante</button>
+    <button (click)="onClickCourse()" mat-menu-item>Cursos</button>
+    <button [ngClass]="user.rol === 'admin' ? '' : 'd-none'" (click)="onClickUser()" mat-menu-item>Gestionar Usuarios</button>
+  </mat-selection-list>
+</div>
+
+  
+  

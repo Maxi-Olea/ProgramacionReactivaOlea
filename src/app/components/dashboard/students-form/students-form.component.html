@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center p-4">
+    <mat-card class="student-card p-4">
+        <mat-card-header>
+            <mat-card-title appFontSize>Agregar un nuevo estudiante</mat-card-title>
+        </mat-card-header>
+        <form  [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+            <mat-card-content>
+                <mat-form-field class="w-100" appearance="fill">
+                    <mat-label>Nombre</mat-label>
+                    <input type="text" matInput formControlName="name">
+                    <mat-error *ngIf="studentForm.get('name')?.touched && studentForm.get('name')?.errors?.['required']">
+                        Este campo es <strong>obligatorio</strong>.
+                    </mat-error>
+                    <mat-error *ngIf="studentForm.get('name')?.touched && studentForm.get('name')?.errors?.['minlength']">
+                        El nombre debe tener por lo menos <strong>3 caracteres</strong>.
+                    </mat-error>
+                    <mat-error *ngIf="studentForm.get('name')?.touched && studentForm.get('name')?.errors?.['maxlength']">
+                        El campo de nombre tiene un máximo de <strong>20 caracteres</strong>.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="w-100" appearance="fill">
+                    <mat-label>Apellido</mat-label>
+                    <input type="text" matInput formControlName="lastname">
+                    <mat-error *ngIf="studentForm.get('lastname')?.touched && studentForm.get('lastname')?.errors?.['required']">
+                        Este campo es <strong>obligatorio</strong>.
+                    </mat-error>
+                    <mat-error *ngIf="studentForm.get('lastname')?.touched && studentForm.get('lastname')?.errors?.['minlength']">
+                        El apellido debe tener por lo menos <strong>2 caracteres</strong>.
+                    </mat-error>
+                    <mat-error *ngIf="studentForm.get('lastname')?.touched && studentForm.get('lastname')?.errors?.['maxlength']">
+                        El campo de apellido tiene un máximo de <strong>15 caracteres</strong>.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="w-100" appearance="fill">
+                    <mat-label>Correo electrónico</mat-label>
+                    <input type="email" matInput formControlName="email">
+                    <mat-error *ngIf="studentForm.get('email')?.touched && studentForm.get('email')?.errors?.['required']">
+                        Este campo es <strong>obligatorio</strong>.
+                    </mat-error>
+                    <mat-error *ngIf="studentForm.get('email')?.touched && studentForm.get('email')?.errors?.['email']">
+                        La dirección de correo electrónico debe tener un formato <strong>valido</strong>.
+                    </mat-error>                
+                </mat-form-field>               
+                <mat-form-field color="accent" appearance="fill">
+                    <mat-label>Fecha de nacimiento</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="birthday">
+                    <mat-hint>MM/DD/AAAA</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker color="primary"></mat-datepicker>
+                    <mat-error *ngIf="studentForm.get('birthday')?.touched && studentForm.get('birthday')?.errors?.['required']">
+                        Este campo es <strong>obligatorio</strong>.
+                    </mat-error>
+                </mat-form-field>       
+            </mat-card-content>
+            <mat-card-actions class="text-center">
+                <button type="submit" mat-raised-button color="primary" [disabled]="this.studentForm.invalid" >Agregar Estudiante</button>
+            </mat-card-actions>
+        </form>
+    </mat-card>
+</div>
+
+
